@@ -22,25 +22,25 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    @Cacheable(cacheNames = "books", key = "#book.isbn")
+    @Cacheable(cacheNames = CachingConfig.CACHE_BOOKS, key = "#book.isbn")
     public Book add(Book book) {
         logger.info("add a book with isbn: " + book.getIsbn());
         return bookRepository.add(book);
     }
 
-    @Cacheable(cacheNames = "books")
+    @Cacheable(cacheNames = CachingConfig.CACHE_BOOKS)
     public Book findByIsbn(String isbn) {
         logger.info("finding book by isbn: " + isbn);
         return bookRepository.findByIsbn(isbn);
     }
 
-    @CachePut(cacheNames = "books", key = "#book.isbn")
+    @CachePut(cacheNames = CachingConfig.CACHE_BOOKS, key = "#book.isbn")
     public Book update(Book book) {
         logger.info("update book by isbn: " + book.getIsbn());
         return bookRepository.updateByIsbn(book.getIsbn(), book);
     }
 
-    @CacheEvict("books")
+    @CacheEvict(CachingConfig.CACHE_BOOKS)
     public boolean remove(String isbn) {
         logger.info("remove book by isbn: " + isbn);
         return bookRepository.remove(isbn);
