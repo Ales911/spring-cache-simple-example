@@ -1,0 +1,6 @@
+curl localhost:8080/books
+curl localhost:8080/books/isbn1
+
+curl --location --request POST "localhost:8080/books" --header "Content-Type: application/json" --data-raw "{\"isbn\": \"isbn4\", \"author\": \"author4\", \"title\": \"title4\"}"
+curl --location --request PUT "localhost:8080/books/isbn4" --header "Content-Type: application/json" --data-raw "{\"author\": \"author41\", \"title\": \"title41\"}"
+curl --location --request DELETE "localhost:8080/books/isbn4"
